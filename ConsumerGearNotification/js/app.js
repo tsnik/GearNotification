@@ -7,8 +7,17 @@ connect();
 
 function createHTML(log_string)
 {
-	var log = document.getElementById('NotifyText');
-	log.innerHTML = log_string;
+	var view = document.getElementById('NotifyText');
+	if(log_string[0]=="0")
+		{
+		view = document.getElementById('NotifyTitle');
+		}
+	else
+		{
+		view = document.getElementById('NotifyText');
+		}
+	
+	view.innerHTML = log_string.substr(1);
 }
 
 function onerror(err) {
