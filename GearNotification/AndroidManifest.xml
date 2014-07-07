@@ -8,7 +8,8 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
     <uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="com.samsung.accessory.permission.ACCESSORY_FRAMEWORK" /> 
+	<uses-permission android:name="com.samsung.accessory.permission.ACCESSORY_FRAMEWORK" />
+	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/> 
     
     <application
         android:allowBackup="true"
@@ -24,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="ServiceProvider" android:process=":notifyservice"></service>
+        <service android:name="ServiceProvider" android:process=":NotifyService"></service>
         <receiver android:name="com.samsung.android.sdk.accessory.RegisterUponInstallReceiver" > 
  			<intent-filter> 
  				<action android:name="android.accessory.device.action.REGISTER_AFTER_INSTALL" /> 
@@ -41,7 +42,7 @@
  			android:name="AccessoryServicesLocation" 
  			android:value="/res/xml/accessoryservices.xml" />
 		
-		<service android:name="NotificationReceiver" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" android:process=":notifyservice">
+		<service android:name="NotificationReceiver" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" android:process=":NotifyService">
 		    <intent-filter>
          		<action android:name="android.service.notification.NotificationListenerService" />
      		</intent-filter>

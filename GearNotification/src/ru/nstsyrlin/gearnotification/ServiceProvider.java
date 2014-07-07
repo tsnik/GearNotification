@@ -3,6 +3,7 @@ package ru.nstsyrlin.gearnotification;
 import java.util.HashMap;
 
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
@@ -17,6 +18,8 @@ public class ServiceProvider extends SAAgent{
 	public static final String TAG = "GearNotificationProviderService";
 	
 	HashMap<Integer, GearNotificationConnection> mConnectionsMap = null;
+	MyBinder binder = new MyBinder();
+	
 	
 	public class GearNotificationConnection extends SASocket{
 		private int mConnectionId; 
@@ -25,7 +28,11 @@ public class ServiceProvider extends SAAgent{
 			super(arg0);
 			// TODO Auto-generated constructor stub
 		}
-
+		
+		public GearNotificationConnection()
+		{
+			super(GearNotificationConnection.class.getName());
+		}
 		@Override
 		public void onError(int arg0, String errorString, int error) {
 			// TODO Auto-generated method stub
@@ -55,7 +62,14 @@ public class ServiceProvider extends SAAgent{
 		super(arg0, arg1);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	public ServiceProvider() {
+		super(TAG, GearNotificationConnection.class);
+		Log.d(TAG, "Start service");
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	protected void onFindPeerAgentResponse(SAPeerAgent arg0, int arg1) {
 		// TODO Auto-generated method stub
@@ -88,8 +102,17 @@ public class ServiceProvider extends SAAgent{
 
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return binder;
 	}
+	
+	public void sendNotify(String text)
+	{
+		Log.e(TAG, "Notification received: "+text);
+	}
+	class MyBinder extends Binder {
+	    ServiceProvider getService() {
+	      return ServiceProvider.this;
+	    }
+	  }
 
 }
