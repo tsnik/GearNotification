@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="ServiceProvider"></service>
+        <service android:name="ServiceProvider" android:process=":notifyservice"></service>
         <receiver android:name="com.samsung.android.sdk.accessory.RegisterUponInstallReceiver" > 
  			<intent-filter> 
  				<action android:name="android.accessory.device.action.REGISTER_AFTER_INSTALL" /> 
@@ -39,7 +39,13 @@
 		
 		<meta-data 
  			android:name="AccessoryServicesLocation" 
- 			android:value="/res/xml/accessoryservices.xml" /> 
+ 			android:value="/res/xml/accessoryservices.xml" />
+		
+		<service android:name="NotificationReceiver" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" android:process=":notifyservice">
+		    <intent-filter>
+         		<action android:name="android.service.notification.NotificationListenerService" />
+     		</intent-filter>
+		</service> 
 		
     </application>
 
