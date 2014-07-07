@@ -17,7 +17,8 @@ import com.samsung.android.sdk.accessory.SASocket;
 public class ServiceProvider extends SAAgent{
 	
 	public static final String TAG = "GearNotificationProviderService";
-	String tmp="";
+	String title="";
+	String text="";
 	MyBinder binder = new MyBinder();
 	public class GearNotificationConnection extends SASocket{
 		private int mConnectionId; 
@@ -83,7 +84,8 @@ public class ServiceProvider extends SAAgent{
 			
 			 Log.d(TAG, "onServiceConnection connectionID = " + myConnection.mConnectionId); 
 			 try {
-				myConnection.send(104, tmp.getBytes());
+				myConnection.send(104, title.getBytes());
+				myConnection.send(104, text.getBytes());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -106,10 +108,11 @@ public class ServiceProvider extends SAAgent{
 	}
 	
 	
-	public void sendNotify(String text)
+	public void sendNotify(String title, String text)
 	{
 		findPeerAgents();
-		tmp=text;
+		this.title="0"+title;
+		this.text="1"+text;
 		Log.e(TAG, "Notification received: "+text);
 		/*new Thread(new Runnable() {
 			public void run() {
