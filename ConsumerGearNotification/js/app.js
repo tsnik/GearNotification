@@ -4,7 +4,7 @@ var CHANNELID = 104;
 var ProviderAppName = "GearNotification";
 
 connect();
-
+addEventListener("touchstart", close, false);
 function createHTML(log_string)
 {
 	var view = document.getElementById('NotifyText');
@@ -70,7 +70,10 @@ function onreceive(channelId, data) {
 	createHTML(data);
 }
 
-
+function close(e)
+{
+	tizen.application.getCurrentApplication().exit();
+}
 ( function () {
 	window.addEventListener( 'tizenhwkey', function( ev ) {
 		if( ev.keyName == "back" ) {
