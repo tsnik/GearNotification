@@ -7,7 +7,9 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="com.samsung.accessory.permission.ACCESSORY_FRAMEWORK" /> 
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,6 +24,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="ServiceProvider"></service>
+        <receiver android:name="com.samsung.android.sdk.accessory.RegisterUponInstallReceiver" > 
+ 			<intent-filter> 
+ 				<action android:name="android.accessory.device.action.REGISTER_AFTER_INSTALL" /> 
+ 			</intent-filter> 
+		</receiver> 
+		<receiver android:name="com.samsung.android.sdk.accessory.ServiceConnectionIndicationBroadcastReceiver" > 
+ 			<intent-filter> 
+ 				<action android:name="android.accessory.service.action.ACCESSORY_SERVICE_CONNECTION_IND" /> 
+ 			</intent-filter> 
+		</receiver> 
+		
+		
+		<meta-data 
+ 			android:name="AccessoryServicesLocation" 
+ 			android:value="/res/xml/accessoryservices.xml" /> 
+		
     </application>
 
 </manifest>
