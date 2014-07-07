@@ -27,13 +27,15 @@
 ]>
 
 <resources> 
-	<application name="HelloGearProvider" > 
+	<application name="GearNotification" > 
  		<serviceProfile 
  			id="/system/gearnotification" 
  			name="GearNotification" 
  			role="provider" 
  			serviceImpl="ru.nstsyrlin.gearnotification.ServiceProvider" 
- 			version="1.0" > 
+ 			version="2.0"
+ 			autoLaunchAppId="qE8blJq31j.ConsumerGearNotification"
+ 			limits="any" > 
  				<supportedTransports> 
  					<transport type="TRANSPORT_BT" /> 
  				</supportedTransports> 

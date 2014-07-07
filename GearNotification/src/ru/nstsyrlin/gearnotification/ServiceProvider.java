@@ -1,5 +1,6 @@
 package ru.nstsyrlin.gearnotification;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import android.content.Intent;
@@ -16,11 +17,8 @@ import com.samsung.android.sdk.accessory.SASocket;
 public class ServiceProvider extends SAAgent{
 	
 	public static final String TAG = "GearNotificationProviderService";
-	
-	HashMap<Integer, GearNotificationConnection> mConnectionsMap = null;
+	String tmp="";
 	MyBinder binder = new MyBinder();
-	
-	
 	public class GearNotificationConnection extends SASocket{
 		private int mConnectionId; 
 
@@ -52,9 +50,6 @@ public class ServiceProvider extends SAAgent{
 			Log.e(TAG, "onServiceConectionLost  for peer = " + mConnectionId
 					+ "error code =" + errorCode);
 
-			if (mConnectionsMap != null) {
-				mConnectionsMap.remove(mConnectionId);
-			}
 		}
 		
 	}
@@ -71,9 +66,12 @@ public class ServiceProvider extends SAAgent{
 	}
 	
 	@Override
-	protected void onFindPeerAgentResponse(SAPeerAgent arg0, int arg1) {
+	protected void onFindPeerAgentResponse(SAPeerAgent peerAgent, int result) {
 		// TODO Auto-generated method stub
-
+		if(result==PEER_AGENT_FOUND)
+		{
+			requestServiceConnection(peerAgent);
+		}
 	}
 
 	@Override
@@ -82,13 +80,15 @@ public class ServiceProvider extends SAAgent{
 		if (result == CONNECTION_SUCCESS) { 
 			 if (thisConnection != null) { 
 				 GearNotificationConnection myConnection = (GearNotificationConnection) thisConnection; 
-			 if (mConnectionsMap == null) { 
-			 mConnectionsMap = new HashMap<Integer, GearNotificationConnection>(); 
-			 } 
-			 myConnection.mConnectionId = (int) (System.currentTimeMillis() & 255); 
+			
 			 Log.d(TAG, "onServiceConnection connectionID = " + myConnection.mConnectionId); 
-			 mConnectionsMap.put(myConnection.mConnectionId, myConnection); 
-			 
+			 try {
+				myConnection.send(104, tmp.getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 myConnection.close();
 			 //Toast.makeText(getBaseContext(), R.string.ConnectionEstablishedMsg, Toast.LENGTH_LONG).show(); 
 			 } else 
 			 Log.e(TAG, "SASocket object is null"); 
@@ -105,9 +105,21 @@ public class ServiceProvider extends SAAgent{
 		return binder;
 	}
 	
+	
 	public void sendNotify(String text)
 	{
+		findPeerAgents();
+		tmp=text;
 		Log.e(TAG, "Notification received: "+text);
+		/*new Thread(new Runnable() {
+			public void run() {
+				try {
+					conn.send(104, tmp.getBytes());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();*/
 	}
 	class MyBinder extends Binder {
 	    ServiceProvider getService() {
