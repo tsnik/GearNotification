@@ -24,8 +24,8 @@
 The service is no longer required on Android 4.3.
 
 Note: On some Samsung phones enabling accessibility services causes the phone to speak actions like \"folder opened\". This is a bug in Samsung's TouchWiz interface. If your phone is affected please disable \"Samsung TTS\" in Settings > Apps > All Apps."</string>
-	<string name="prefs_title_privacy">Title + Content</string>
-    <string name="prefs_summary_privacy">Send the title and content of notifications.</string>
+	<string name="prefs_title_enable">Enable</string>
+    <string name="prefs_summary_enable">Send notifications.</string>
     <string name="prefs_category_general">General</string>
     <string name="prefs_category_apps">Allowed Apps</string>
     <string name="prefs_summary_count">%1$s Notifications</string>
