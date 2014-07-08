@@ -4,5 +4,38 @@
     <string name="app_name">Gear Notification</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+	<string name="header_accessibility_service">1. Accessibility Service</string>
+    <string name="text_accessibility_service">This app requires the accessibility service <b>Desktop Notifications</b> to be enabled.</string>
+    <string name="button_open_accessibility_settings">Open Accessibility Settings</string>
+    <string name="text_accessibility_service_status_disabled">The accessibility service is currently <font color="#00FF00">disabled</font>.</string>
+    <string name="text_accessibility_service_status_enabled">The accessibility service is currently <font color="green">enabled</font>.</string>
+    <string name="header_notification_listener">1. Notification Access</string>
+    <string name="text_notification_listener">Allow <b>Desktop Notifications</b> in the Notification Access settings.</string>
+    <string name="button_notification_listener">Open Notification Settings</string>
+    <string name="header_test">2. Test</string>
+    <string name="text_test">Press the button below to create a test notification.</string>
+    <string name="button_test">Create Test Notification</string>
+    <string name="text_test_note">Note: It takes a few seconds to deliver a notification.</string>
+    <string name="notif_error_header">Heads up!</string>
+    <string name="notif_error_text">The accessiblity service is currently disabled. In order to send notifications to your Samsung Gear you have to enable it.</string>
+    <string name="notif_error_close">Got it!</string>
+    <string name="accessibility_service_description">"Enable this service to send notifications to your browser.
 
+The service is no longer required on Android 4.3.
+
+Note: On some Samsung phones enabling accessibility services causes the phone to speak actions like \"folder opened\". This is a bug in Samsung's TouchWiz interface. If your phone is affected please disable \"Samsung TTS\" in Settings > Apps > All Apps."</string>
+	<string name="prefs_title_privacy">Title + Content</string>
+    <string name="prefs_summary_privacy">Send the title and content of notifications.</string>
+    <string name="prefs_category_general">General</string>
+    <string name="prefs_category_apps">Allowed Apps</string>
+    <string name="prefs_summary_count">%1$s Notifications</string>
+    <string name="prefs_summary_apps">Apps that have created at least one notification will appear here.</string>
+    <string name="test_notif_ticker">Hello World!</string>
+    <string name="test_notif_content">Test Notification</string>
+    <string name="sdk18_title">Hey!</string>
+    <string name="sdk18_text">"Starting from Android 4.3 our app doesn't have to rely on an accessibility service anymore.
+
+We recommend disabling the accessibility service and using the notification access setting instead."</string>
+    <string name="sdk18_open">Open Accessibility Settings</string>
+    <string name="sdk18_close">Not Now</string>
 </resources>

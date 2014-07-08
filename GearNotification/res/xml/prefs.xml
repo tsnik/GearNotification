@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/prefs_category_general">
+        <CheckBoxPreference android:title="@string/prefs_title_privacy" android:key="PREF_PRIVACY" android:summary="@string/prefs_summary_privacy" />
+    </PreferenceCategory>
+</PreferenceScreen>

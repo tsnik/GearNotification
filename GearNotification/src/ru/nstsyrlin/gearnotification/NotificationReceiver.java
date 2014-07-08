@@ -12,9 +12,11 @@ import android.app.Notification;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
@@ -59,6 +61,14 @@ public class NotificationReceiver extends NotificationListenerService {
 	    List<String> notify_text=getText(not);
 		Log.e(TAG, "Notification received: "+notify_text);
 		Log.d(TAG, bound.toString());
+		String str2 = sbn.getPackageName();
+	    String str3 = Util.getAppNameFromPackage(getApplicationContext(), str2);
+	    long l = System.currentTimeMillis();
+		new StatisticsDb(this).insertNotification(str3, str2, l);
+		SharedPreferences localSharedPreferences = this.getSharedPreferences(this.getPackageName() + "_preferences", MODE_MULTI_PROCESS);
+		boolean a=localSharedPreferences.getBoolean("PREF_APP_" + str2, true);
+		if ((!localSharedPreferences.getBoolean("PREF_APP_" + str2, true)) || (Blacklist.contains(str2)))
+			return;
 		myService.sendNotify(notify_text.get(0),notify_text.get(1));
 		}
 
