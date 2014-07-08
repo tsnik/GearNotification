@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/ConsumerGearNotification" version="1.0.0" viewmodes="maximized">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/ConsumerGearNotification" version="1.0.0" viewmodes="maximized">
     <tizen:application id="qE8blJq31j.ConsumerGearNotification" package="qE8blJq31j" required_version="2.2"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.normal.320.320"/>
     <icon src="icon.png"/>
     <tizen:metadata key="AccessoryServicesLocation" value="res/accessoryservices.xml"/>
     <name>ConsumerGearNotification</name>
-    <tizen:setting hwkey-event="enable"/>
     <tizen:privilege name="http://developer.samsung.com/privilege/accessoryprotocol"/>
+    <tizen:privilege name="http://tizen.org/privilege/power"/>
+    <tizen:setting hwkey-event="enable"/>
 </widget>

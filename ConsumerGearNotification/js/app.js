@@ -15,6 +15,13 @@ function createHTML(log_string)
 	else
 		{
 		view = document.getElementById('NotifyText');
+		setTimeout(function() {
+			tizen.power.request("SCREEN", "SCREEN_NORMAL");
+			setTimeout(function() {
+				tizen.power.release("SCREEN");
+				tizen.application.getCurrentApplication().exit();
+			}, 10000)
+		}, 1000);
 		}
 	
 	view.innerHTML = log_string.substr(1);
